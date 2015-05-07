@@ -1,0 +1,72 @@
+% Latex-Style
+% Jonas Lieb (jonas.lieb@rwth-aachen.de)
+% 06. Mai 2015
+
+
+% =====================================
+% pragmas for latex compiler
+
+% pdf compression
+\pdfminorversion=5 \pdfcompresslevel=9 \pdfobjcompresslevel=9
+
+
+% =====================================
+% packages
+
+% DIN-A4 paper
+\RequirePackage[a4paper, bottom=3.5cm]{geometry}
+
+% encoding
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+
+% font
+\RequirePackage{lmodern}
+
+% language
+\RequirePackage[english]{babel}
+
+% enables graphics inclusion
+\RequirePackage{graphicx}
+
+% floating figures (with [h])
+\RequirePackage{float}
+
+% references (without being highlighted)
+\RequirePackage[pdfborder={0 0 0},breaklinks=true]{hyperref}
+
+% non-italic greek letters (for SI-prefixes)
+\RequirePackage{upgreek}
+
+% quoting with bibtex
+\RequirePackage{cite}
+
+% non-italic units with half space in front
+\RequirePackage{units}
+
+% miscellaneous math enhancements from AMS-TeX
+\RequirePackage{amsmath}
+
+% extended symbol collection from AMS-TeX
+\RequirePackage{amssymb}
+
+
+% =====================================
+% style
+
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+
+\RequirePackage{garamondx}
+\RequirePackage[urw-garamond]{mathdesign}
+
+\linespread{1.3}
+
+
+% =====================================
+% custom commands
+
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\diff}[2]{\frac{\mathrm d #1}{\mathrm d #2}}
+
+\newcommand{\degree}{^{\circ}}
