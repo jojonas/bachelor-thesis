@@ -1,0 +1,8 @@
+*.sublime-*
+
+latex/*.log
+latex/*.aux
+latex/*.out
+
+# Remove this on final version
+latex/*.pdf
