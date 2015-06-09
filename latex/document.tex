@@ -1,17 +1,24 @@
-\documentclass{article}
+\documentclass[paper=a4,titlepage=on,headsepline=on]{scrreprt}
+
 \usepackage{lieb}
-\usepackage{blindtext}
 
 \title{My Bachelor's thesis (my sample title) Lorem Ipsum Lorem Ipsum yadda yadda}
 \date{XX.YY.2015}
 \author{Jonas Lieb}
 
 \begin{document}
+
 \input{title}
 \newpage
 
-\blinddocument
+\input{abstract}
+\newpage
 
-\[ \int_0^\infty e^{-x^2} dx=\frac{\sqrt{\pi}}{2} \]
+\tableofcontents
+
+\input{introduction}
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
 
 \end{document}

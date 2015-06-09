@@ -10,26 +10,8 @@ bibliographies = $(shell sed -e 's/\\bibliography{\(.*\)}/\1.bib/g;tx;d;:x' $(1)
 document.pdf: document.tex lieb.sty $(call includes,document.tex) $(call inputs,document.tex) $(call bibliographies,document.tex)
 
 %.pdf: %.tex
-	@echo Running PDF-Latex on "$*"...
-	@pdflatex -quiet $*
-	@bibtex -quiet $*
-	@pdflatex -quiet $*
-	@pdflatex -quiet $*
-
-%.dvi: %.tex
-	@echo Running Latex on "$*"...
-	@latex -quiet $*
-	@bibtex -quiet $*
-	@latex -quiet $*
-	@latex -quiet $*
-
-%.ps: %.dvi
-	@echo Converting "$*" to postscript...
-	@dvips -q* -Ppdf -o $@ $*
-
-#%.pdf: %.ps
-#	@echo Converting "$<" to PDF...
-#	@ps2pdf $< $@
+	@echo Running Texify on "$*"...
+	@texify --pdf --batch --quiet --clean $<
 
 clean:
 	@echo Removing intermediate files...

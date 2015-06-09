@@ -43,33 +43,38 @@
 
 % non-italic units with half space in front
 \RequirePackage{units}
+\RequirePackage{hepunits}
+\RequirePackage{hepnames}
+
+% Shortcuts often used in physics
+\RequirePackage{physics}
 
 % miscellaneous math enhancements from AMS-TeX
 \RequirePackage{amsmath}
 
 % extended symbol collection from AMS-TeX
-\RequirePackage{amssymb}
+%\RequirePackage{amssymb}
+
+\RequirePackage{multirow}
+\RequirePackage[table]{xcolor}
 
 
 % =====================================
 % style
 
 % fancy header: includes chapter title on top of each page
-\RequirePackage{fancyhdr}
-\pagestyle{fancy}
+%\pagestyle{scrheadings}
+
+%\RequirePackage{fancyhdr}
+%\pagestyle{fancy}
 
 % garamond font: pretty serif font for text and math
 \RequirePackage{garamondx}
 \RequirePackage[urw-garamond]{mathdesign}
 
+\setkomafont{disposition}{\normalcolor\bfseries}
+
 % more line spread, can be reduced eventually
 \linespread{1.3}
 
-
-% =====================================
-% custom commands
-
-\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\diff}[2]{\frac{\mathrm d #1}{\mathrm d #2}}
-
-\newcommand{\degree}{^{\circ}}
+\newcommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
