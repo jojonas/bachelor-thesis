@@ -3,6 +3,12 @@
 latex/*.log
 latex/*.aux
 latex/*.out
+latex/*.bbl
+latex/*.run.xml
+latex/*.synctex.gz
+latex/*.toc
+latex/*.bib.bak
+latex/*.blg
 
 # Remove this on final version
 latex/*.pdf

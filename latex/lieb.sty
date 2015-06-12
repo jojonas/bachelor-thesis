@@ -1,6 +1,6 @@
 % Latex-Style
 % Jonas Lieb (jonas.lieb@rwth-aachen.de)
-% 06. Mai 2015
+% Juni 2015
 
 
 % =====================================
@@ -44,6 +44,9 @@
 % non-italic units with half space in front
 \RequirePackage{units}
 \RequirePackage{hepunits}
+\addunit{\byte}{B}
+
+% particle names
 \RequirePackage{hepnames}
 
 % Shortcuts often used in physics
@@ -52,11 +55,20 @@
 % miscellaneous math enhancements from AMS-TeX
 \RequirePackage{amsmath}
 
+% slash notation (e.g. for MET)
+\RequirePackage{slashed}
+
 % extended symbol collection from AMS-TeX
 %\RequirePackage{amssymb}
 
+% additional multirow/multicolumn feature in tables
 \RequirePackage{multirow}
+
+% definition of color names
 \RequirePackage[table]{xcolor}
+
+% naggs about obsolete commands
+\RequirePackage[l2tabu, orthodox]{nag}
 
 
 % =====================================
@@ -68,13 +80,30 @@
 %\RequirePackage{fancyhdr}
 %\pagestyle{fancy}
 
+\RequirePackage[automark,headsepline]{scrlayer-scrpage}
+
 % garamond font: pretty serif font for text and math
 \RequirePackage{garamondx}
 \RequirePackage[urw-garamond]{mathdesign}
 
+% use font also for KOMA-titles
 \setkomafont{disposition}{\normalcolor\bfseries}
 
 % more line spread, can be reduced eventually
 \linespread{1.3}
 
+% typesetting improvements
+\RequirePackage{microtype}
+
+
+% =====================================
+% commands
+
+% x 10^A
 \newcommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
+
+\newcommand{\pT}{\ensuremath{p_\mathrm{T}}}
+\newcommand{\ET}{\ensuremath{E_\mathrm{T}}}
+\newcommand{\MET}{\ensuremath{\slashed{E}_\mathrm{T}}}
+
+\newcommand{\ptilde}{\tilde{p}}

@@ -1,6 +1,7 @@
-\documentclass[paper=a4,titlepage=on,headsepline=on]{scrreprt}
+\documentclass[paper=a4,titlepage=on,headsepline=on,twoside,openright,BCOR20mm]{scrbook}
 
 \usepackage{lieb}
+\graphicspath{{images/}}
 
 \title{My Bachelor's thesis (my sample title) Lorem Ipsum Lorem Ipsum yadda yadda}
 \date{XX.YY.2015}
@@ -11,14 +12,15 @@
 \input{title}
 \newpage
 
-\input{abstract}
+\input{abstract_en}
+\input{abstract_de}
 \newpage
 
 \tableofcontents
 
 \input{introduction}
 
-\bibliographystyle{unsrt}
-\bibliography{bibliography}
+\bibliographystyle{utphys}
+\bibliography{bibliography,images}
 
 \end{document}
