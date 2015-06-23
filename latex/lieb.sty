@@ -58,6 +58,9 @@
 % slash notation (e.g. for MET)
 \RequirePackage{slashed}
 
+% xspace: conditional space
+\RequirePackage{xspace}
+
 % extended symbol collection from AMS-TeX
 %\RequirePackage{amssymb}
 
@@ -102,8 +105,18 @@
 % x 10^A
 \newcommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
 
-\newcommand{\pT}{\ensuremath{p_\mathrm{T}}}
-\newcommand{\ET}{\ensuremath{E_\mathrm{T}}}
-\newcommand{\MET}{\ensuremath{\slashed{E}_\mathrm{T}}}
+\newcommand{\Minv}{\ensuremath{M_\mathrm{inv}}\xspace}
+\newcommand{\pT}{\ensuremath{p_\mathrm{T}}\xspace}
+\newcommand{\sumpT}{\ensuremath{\sum \pT}\xspace}
+\newcommand{\ET}{\ensuremath{E_\mathrm{T}}\xspace}
+\newcommand{\MET}{\ensuremath{\slashed{E}_\mathrm{T}}\xspace}
 
-\newcommand{\ptilde}{\tilde{p}}
+\newcommand{\ptilde}{\ensuremath{\tilde{p}}\xspace}
+\newcommand{\p}{\ensuremath{p}\xspace}
+\newcommand{\pxlio}{\texttt{pxlio}\xspace}
+
+\newcommand{\eventclass}[1]{\framebox{\textsf{#1}}}
+\newcommand{\Ndata}{\ensuremath{N_\mathrm{obs}}}
+\newcommand{\Nmc}{\ensuremath{N_\mathrm{SM}}}
+\newcommand{\sigmamc}{\ensuremath{\sigma_\mathrm{SM}}}
+
