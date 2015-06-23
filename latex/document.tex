@@ -1,4 +1,17 @@
-\documentclass[paper=a4,titlepage=on,headsepline=on,twoside,openright,BCOR20mm]{scrbook}
+\documentclass[
+	paper=A4,
+	twoside=true,
+	openright,
+	parskip=full,
+	chapterprefix=true,
+	11pt,
+	headings=normal,
+	bibliography=totoc,
+	listof=totoc,
+	titlepage=on,
+	captions=tableabove,
+	draft=false
+	]{scrreprt}
 
 \usepackage{lieb}
 \graphicspath{{images/}}
@@ -9,17 +22,26 @@
 
 \begin{document}
 
+\pagenumbering{roman}
+\pagestyle{empty}
+
 \input{title}
-\newpage
+\cleardoublepage
 
 \input{abstract_en}
 \input{abstract_de}
-\newpage
+\cleardoublepage
 
 \tableofcontents
 
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pagestyle{maincontentstyle}
+
 \input{introduction}
 \input{music-introduction}
+
+\cleardoublepage
 
 \bibliographystyle{utphys}
 \bibliography{bibliography,images}

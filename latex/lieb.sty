@@ -13,15 +13,12 @@
 % =====================================
 % packages
 
-% DIN-A4 paper
-\RequirePackage[a4paper, bottom=3.5cm]{geometry}
-
 % encoding
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 
 % font
-\RequirePackage{lmodern}
+%\RequirePackage{lmodern}
 
 % language
 \RequirePackage[english]{babel}
@@ -33,13 +30,17 @@
 \RequirePackage{float}
 
 % references (without being highlighted)
-\RequirePackage[pdfborder={0 0 0},breaklinks=true]{hyperref}
+\RequirePackage[
+	pdfborder={0 0 0},
+	breaklinks=true,
+	plainpages=false,
+	colorlinks=false,
+	bookmarksnumbered=true,
+	bookmarksopen=true
+]{hyperref}
 
 % non-italic greek letters (for SI-prefixes)
 \RequirePackage{upgreek}
-
-% quoting with bibtex
-\RequirePackage{cite}
 
 % non-italic units with half space in front
 \RequirePackage{units}
@@ -62,13 +63,10 @@
 \RequirePackage{xspace}
 
 % extended symbol collection from AMS-TeX
-%\RequirePackage{amssymb}
+\RequirePackage{amssymb}
 
 % additional multirow/multicolumn feature in tables
 \RequirePackage{multirow}
-
-% definition of color names
-\RequirePackage[table]{xcolor}
 
 % naggs about obsolete commands
 \RequirePackage[l2tabu, orthodox]{nag}
@@ -77,23 +75,16 @@
 % =====================================
 % style
 
-% fancy header: includes chapter title on top of each page
-%\pagestyle{scrheadings}
-
-%\RequirePackage{fancyhdr}
-%\pagestyle{fancy}
-
-\RequirePackage[automark,headsepline]{scrlayer-scrpage}
-
-% garamond font: pretty serif font for text and math
-\RequirePackage{garamondx}
-\RequirePackage[urw-garamond]{mathdesign}
-
-% use font also for KOMA-titles
-\setkomafont{disposition}{\normalcolor\bfseries}
-
-% more line spread, can be reduced eventually
-\linespread{1.3}
+\RequirePackage[
+	figuresep=colon,
+	sansserif=false,
+	hangfigurecaption=false,
+	hangsection=true,
+	hangsubsection=true,
+	colorize=full,
+	colortheme=rwth,
+	bibsys=bibtex
+]{cleanthesis}
 
 % typesetting improvements
 \RequirePackage{microtype}
@@ -105,18 +96,18 @@
 % x 10^A
 \newcommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
 
-\newcommand{\Minv}{\ensuremath{M_\mathrm{inv}}\xspace}
-\newcommand{\pT}{\ensuremath{p_\mathrm{T}}\xspace}
-\newcommand{\sumpT}{\ensuremath{\sum \pT}\xspace}
-\newcommand{\ET}{\ensuremath{E_\mathrm{T}}\xspace}
-\newcommand{\MET}{\ensuremath{\slashed{E}_\mathrm{T}}\xspace}
+\newcommand{\Minv}{\ensuremath{{M_\mathrm{inv}}}\xspace}
+\newcommand{\pT}{\ensuremath{{p_\mathrm{T}}}\xspace}
+\newcommand{\sumpT}{\ensuremath{{\sum \pT}}\xspace}
+\newcommand{\ET}{\ensuremath{{E_\mathrm{T}}}\xspace}
+\newcommand{\MET}{\ensuremath{{\slashed{E}_\mathrm{T}}}\xspace}
 
 \newcommand{\ptilde}{\ensuremath{\tilde{p}}\xspace}
 \newcommand{\p}{\ensuremath{p}\xspace}
 \newcommand{\pxlio}{\texttt{pxlio}\xspace}
 
 \newcommand{\eventclass}[1]{\framebox{\textsf{#1}}}
-\newcommand{\Ndata}{\ensuremath{N_\mathrm{obs}}}
-\newcommand{\Nmc}{\ensuremath{N_\mathrm{SM}}}
-\newcommand{\sigmamc}{\ensuremath{\sigma_\mathrm{SM}}}
+\newcommand{\Ndata}{\ensuremath{{N_\mathrm{obs}}}\xspace}
+\newcommand{\Nmc}{\ensuremath{{N_\mathrm{SM}}}\xspace}
+\newcommand{\sigmamc}{\ensuremath{{\sigma_\mathrm{SM}}}\xspace}
 
