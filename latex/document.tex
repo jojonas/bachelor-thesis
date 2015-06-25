@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_US
 \documentclass[
 	paper=A4,
 	twoside=true,
@@ -9,14 +10,14 @@
 	bibliography=totoc,
 	listof=totoc,
 	titlepage=on,
-	captions=tableabove,
-	draft=false
+	draft
+%	final
 	]{scrreprt}
 
 \usepackage{lieb}
 \graphicspath{{images/}}
 
-\title{My Bachelor's thesis (my sample title) Lorem Ipsum Lorem Ipsum yadda yadda}
+\title{Development of a fast search algorithm for the MUSiC framework}
 \date{XX.YY.2015}
 \author{Jonas Lieb}
 
@@ -25,11 +26,11 @@
 \pagenumbering{roman}
 \pagestyle{empty}
 
-\input{title}
+\input{chapters/title}
 \cleardoublepage
 
-\input{abstract_en}
-\input{abstract_de}
+\input{chapters/abstract_en}
+\input{chapters/abstract_de}
 \cleardoublepage
 
 \tableofcontents
@@ -38,8 +39,8 @@
 \setcounter{page}{1}
 \pagestyle{maincontentstyle}
 
-\input{introduction}
-\input{music-introduction}
+\input{chapters/introduction}
+\input{chapters/music-introduction}
 
 \cleardoublepage
 

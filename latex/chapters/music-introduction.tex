@@ -81,9 +81,9 @@ For a dedicated analysis looking at one fixed histogram region only, this \p val
 
 To counter the look elsewhere effect, the scanning algorithm is applied multiple times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly diced from a Gaussian distribution around $\Nmc$, having the width of the systematic error $\sigmamc$. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $\Ndata'$. The dicing of pseudo experiments is performed in a correlated way, the choice of $\Nmc'$ is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p value.
 \begin{figure}[htbp]
-	\center
+	\centering
 	\includegraphics[width=0.6\textwidth]{ptilde_illustration.pdf}
-	\caption{Illustration of a \ptilde calculation. 1000 pseudo-experiments have been conducted. The experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution.}
+	\caption{Illustration of a \ptilde calculation. 1000 pseudo-experiments have been conducted. The XYZ experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution.\TODO{generate graphics to insert here}}
 	\label{fig:ptilde_illustration}
 \end{figure}
 Finally, the amount of pseudo experiments with more significant deviations is compared to the total amount of pseudo experiments conducted:

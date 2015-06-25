@@ -24,7 +24,7 @@
 \RequirePackage[english]{babel}
 
 % enables graphics inclusion
-\RequirePackage{graphicx}
+\RequirePackage[final]{graphicx}
 
 % floating figures (with [h])
 \RequirePackage{float}
@@ -84,10 +84,32 @@
 	colorize=full,
 	colortheme=rwth,
 	bibsys=bibtex
-]{cleanthesis}
+]{utils/cleanthesis}
 
 % typesetting improvements
 \RequirePackage{microtype}
+
+% =====================================
+% draft settings
+
+\renewcommand{\TODO}[1]{
+	{\color{color_todo}\textbf{[TODO #1]}}
+	\message{TODO: #1}
+}
+
+\RequirePackage{utils/ifdraft}
+\ifdraft{
+	\RequirePackage{draftwatermark}
+	
+	\SetWatermarkText{DRAFT}
+	\SetWatermarkScale{1.5}
+	\SetWatermarkLightness{0.85}
+	
+	\RequirePackage[left]{lineno}
+	\linenumbers
+}{
+	\renewcommand{\TODO}[1]{\errmessage{TODO: #1}}
+}
 
 
 % =====================================
