@@ -1,0 +1,69 @@
+% !TeX spellcheck = en_US
+% !TeX encoding = UTF-8
+% !TeX root = ../document.tex
+
+\chapter{Quickscan}
+
+\section{Motivation}
+The calculation of the \p value includes integration over a series. The \p value is calculated for each connected bin region, resulting in a runtime of $\order{n^2}$ with the number of regions in a distribution. Additionally, the runtime increases linearly with the number of classes, distributions and pseudo-experiments.
+The typical number of integrals computed during a scan is $\order{10^{8} - 10^{10}}$. Even though a fast implementation is used (simple adaptive integration, QAG, from the GNU Scientific Library), this part consumes most of the computation time, making it a feasible target for optimization. 
+The goal of the \emph{Quickscan} algorithm is to reduce the amount of computation time spent in the scanning step without losses of physical significance. These two separate goals will be observed and optimized in the remainder of this work.
+
+
+\section{Description}
+Instead of reducing the time to calculate individual integrals, Quickscan aims to reduce the number of integrals that are evaluated. The complexity of $\order{n^2}$ in the number of regions suggests that a reduction of the number of possible regions through careful selection will have the highest impact on the total number of integrals.
+
+To treat regions with low amounts of observed data separately from regions with high statistics, regions are grouped according to the magnitude of \Nmc during the \emph{magnitude binning}. The necessity of magnitude binning will be shown in the following sections.
+The bin size of this grouping step is expressed as the configurable parameter \parambinbase, called \emph{magnitude bin base}. The actual bin index~$n$ of a region is determined using
+\begin{equation}
+n = \floor*{\log_\parambinbase\left(\Nmc\right)} =  \floor*{\frac{\log(\Nmc)}{\log(\parambinbase)}}
+\end{equation}
+
+For each magnitude bin, the $\paramregions > 1$ most significant regions are chosen. Two factors play a role while comparing regions to each other: fixed rules for nested regions and \mychi for the general significance of the deviation.
+
+\subsection{Treatment of Nested Regions}
+The significance of two regions $A$ and $B$ can be compared according to the following rules (without proof). 
+\begin{my_list}
+	\item $A$ is nested inside of $B$
+	\item excess of data in $A$: $\Ndata(A) > \Nmc(A)$
+	\item no additional data in $B \setminus A$: $\Ndata(A) = \Ndata(B)$
+	\item additional MC in $B \setminus A$: $\Nmc(A) < \Nmc(B)$
+\end{my_list}
+If all of these criteria are fulfilled, region $A$ is more significant than region $B$.
+
+The same arguments give rise to a rule for regions with a lack of data over MC:
+\begin{my_list}
+	
+	
+\end{my_list}
+
+
+
+\section{Description}
+Instead of reducing the time to calculate individual integrals, Quickscan aims to reduce the number of integrals that are evaluated. The runtime class of $\order{n^2}$ in the number of regions suggests that a reduction of the number of possible regions will have the highest impact on the total number of integrals.
+
+Like the full scan, the algorithm regards all possible connected bin regions. For each bin region, a simplified measure for significance is calculated:
+\begin{equation}
+\mychi \defeq \frac{|\Ndata - \Nmc|}{\sigmamc'}
+\end{equation}
+where
+\begin{equation}
+\sigmamc' \defeq \sqrt{\sigmamc^2 + \sigmamc_{\mathrm{stat}}^2} = \sqrt{\sigmamc^2 + \Nmc}
+\end{equation}
+
+This value represents the amount of deviation, with respect to the expected standard deviation~$\sigmamc'$, analogous to $\chi^2$ commonly used in physics.
+
+After \mychi has been determined, the candidate regions and their \mychi values are grouped according to the magnitude of \Nmc. The advantage of this \emph{magnitude binning} is to ensure that regions with low data statistics are treated in the same way as high statistics regions. The necessity of magnitude binning will be shown in the following sections.
+The bin size of this grouping step is expressed as the configurable parameter \parambinbase, called \emph{magnitude bin base}. The actual bin index~$n$ of a region is determined using
+\begin{equation}
+n = \floor*{\log_\parambinbase\left(\Nmc\right)} =  \floor*{\frac{\log(\Nmc)}{\log(\parambinbase)}}
+\end{equation}
+Following this, for each magnitude bin, the \paramregions regions with the largest \mychi values are selected. For these ultimate candidates, the classical \p~value is calculated and the region of interest is chosen, having the smallest \p~value.
+
+
+\section{Evaluation criteria}
+As previously stated, the algorithm has to be evaluated and optimized towards physics correctness and computation effort. In this section, two criteria are introduced to represent these two goals: computation time and average \ptilde deviation~\deltaptilde.
+
+\subsection{Computation time}
+
+\subsection{\deltaptilde value}
