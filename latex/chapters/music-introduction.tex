@@ -1,4 +1,7 @@
 % !TeX spellcheck = en_US
+% !TeX encoding = UTF-8
+% !TeX root = ../document.tex
+
 \chapter{Model Unspecific Search in CMS}
 
 The Model Unspecific Search in CMS (\emph{MUSiC}) is an analysis procedure that compares observed data to Monte Carlo (MC) expectations of the standard model. Unlike dedicated analyses that usually only regard a few decay channels, an unspecific search covers a broad spectrum of final states. Because MUSiC is sensitive to small deviations that occur in multiple decay channels, it is well suited for searches for processes that are not significant at low-energy scales.
@@ -38,7 +41,7 @@ For each event class, a histogram of the kinematic variables \sumpT, \Minv, \MET
 The scanning algorithm (\emph{scanner}) searches for the most significant deviation between MC and data in each histogram.
 
 \subsection{Region Building}
-For each histogram, the scanner probes all connected bin regions and calculates the \p value for each one.
+For each histogram, the scanner probes all connected bin regions and calculates the \p~value for each one.
 
 The set of connected bin regions can be defined and calculated as
 \begin{equation}
@@ -46,11 +49,11 @@ R = \{(s, e) \, \forall e \in (s + m, l) \, \forall s \in (0, l-m)\}
 \end{equation}
 where the histogram spans the bins $0$ to $l$ and $m$ denotes a minimal number of bins per region which can be configured.
 
-For each region, the \p value is calculated. The region of most deviation (smallest \p) is called \emph{region of interest} and stored.
+For each region, the \p~value is calculated. The region of most deviation (smallest \p) is called \emph{region of interest} and stored.
 
 \subsection{The \p value}
-The \p value expresses the probability of measuring a data point $\Ndata$ as significant as the one observed, or more significant, given the Monte Carlo expectation $\Nmc$.
-Since the calculation deals with results of counting, experiments, a Poisson distribution is assumed. The probability of making an observation $N$ given the Poisson mean $\Nmc$ is
+Given the number of total events in a region~\Ndata and an expectation~$\Nmc \pm \sigmamc$, the \p value expresses the probability of making this measurement or a more significant one.
+Since the calculation deals with results of counting experiments, a Poisson distribution is assumed. The probability of making an observation $N$ given the Poisson mean~\Nmc is
 \begin{equation}
 	P(N) = \frac{e^{-\Nmc} \Nmc^N}{N!}
 \end{equation}
@@ -64,9 +67,9 @@ p =
 		\sum\limits_{N = 0}^{\Ndata} \frac{e^{-\Nmc} \Nmc^N}{N!} &\mbox{if} \; \Ndata < \Nmc
 	\end{cases}
 \end{equation}
-Since the Poisson mean is usually not exactly known, for example because of Monte Carlo statistics, it is evaluated for multiple possible values $\theta$ which are weighted by a Gaussian distribution of width $\sigmamc$ around $\Nmc$. This final probability is called \emph{\p value}:
+Since the Poisson mean is usually not exactly known, for example because of Monte Carlo statistics, it is evaluated for multiple possible values $\theta$ which are weighted by a Gaussian distribution of width~\sigmamc around \Nmc. This final probability is called \emph{\p value}:
 \begin{equation}
-p = 
+p \defeq 
 	\begin{cases} 
 		\displaystyle
 		\sum\limits_{N = \Ndata}^{\infty} C \cdot \int\limits_0^\infty \dd \theta \exp(-\frac{(\theta-\Nmc)^2}{2 \sigmamc^2}) \cdot \frac{e^{-\theta} \theta^N}{N!} &\mbox{if} \; \Ndata \geq \Nmc \\
@@ -77,19 +80,21 @@ p =
 The constant $C$ denotes a normalization factor that compensates for using $0$ as the lower limit of the integral. This is necessary since the Poisson distribution with a negative expectation is not physical.
 
 \subsection{The \ptilde value}
-For a dedicated analysis looking at one fixed histogram region only, this \p value would be sufficient to describe the statistical significance of the deviation. But since the scanner algorithm regards many regions to choose the most significant one from, the probability of finding a deviation somewhere is larger than \p. This is called \emph{look elsewhere effect}.
+For a dedicated analysis looking at one fixed histogram region only, this \p~value would be sufficient to describe the statistical significance of the deviation. But since the scanner algorithm regards many regions to choose the most significant one from, the probability of finding a deviation somewhere is larger than \p. This is called \emph{look elsewhere effect}.
 
-To counter the look elsewhere effect, the scanning algorithm is applied multiple times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly diced from a Gaussian distribution around $\Nmc$, having the width of the systematic error $\sigmamc$. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $\Ndata'$. The dicing of pseudo experiments is performed in a correlated way, the choice of $\Nmc'$ is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p value.
+To counter the look elsewhere effect, the scanning algorithm is applied multiple times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly shifted from a Gaussian distribution around \Nmc, having the width of the systematic error \sigmamc. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $\Ndata'$. The dicing of pseudo experiments is performed in a correlated way, the choice of $\Nmc'$ is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p value.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.6\textwidth]{ptilde_illustration.pdf}
-	\caption{Illustration of a \ptilde calculation. 1000 pseudo-experiments have been conducted. The XYZ experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution.\TODO{generate graphics to insert here}}
+	\caption{Illustration of a \ptilde calculation. 1000 pseudo-experiments have been conducted. The XYZ experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution.\todo{generate graphics to insert here}}
 	\label{fig:ptilde_illustration}
 \end{figure}
 Finally, the amount of pseudo experiments with more significant deviations is compared to the total amount of pseudo experiments conducted:
 \begin{equation}
-	\ptilde = \frac{\text{number of pseudo-experiments with } \p < \p_\mathrm{data}}{\text{total number of pseudo experiments}}
+	\ptilde \defeq \frac{\text{number of pseudo-experiments with } \p < \p_\mathrm{data}}{\text{total number of pseudo experiments}}
 \end{equation}
+This \ptilde~value is used as significance indicator throughout other MUSiC publications.
+
 
 
 

@@ -1,3 +1,5 @@
+% !TeX root = ../document.tex
+
 % Latex-Style
 % Jonas Lieb (jonas.lieb@rwth-aachen.de)
 % Juni 2015
@@ -71,6 +73,9 @@
 % naggs about obsolete commands
 \RequirePackage[l2tabu, orthodox]{nag}
 
+% for custom Math typesetting 
+\RequirePackage{mathtools}
+
 
 % =====================================
 % style
@@ -92,8 +97,8 @@
 % =====================================
 % draft settings
 
-\renewcommand{\TODO}[1]{
-	{\color{color_todo}\textbf{[TODO #1]}}
+\newcommand{\todo}[1]{
+	{\color{color_todo}\textbf{[TODO: #1]}}
 	\message{TODO: #1}
 }
 
@@ -108,15 +113,25 @@
 	\RequirePackage[left]{lineno}
 	\linenumbers
 }{
-	\renewcommand{\TODO}[1]{\errmessage{TODO: #1}}
+	\renewcommand{\todo}[1]{\errmessage{TODO: #1}}
 }
+
+\let\TODO\undefined
 
 
 % =====================================
 % commands
 
+% definition sign
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+
 % x 10^A
 \newcommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
+
+% floor{...} command
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
 
 \newcommand{\Minv}{\ensuremath{{M_\mathrm{inv}}}\xspace}
 \newcommand{\pT}{\ensuremath{{p_\mathrm{T}}}\xspace}
@@ -127,9 +142,13 @@
 \newcommand{\ptilde}{\ensuremath{\tilde{p}}\xspace}
 \newcommand{\p}{\ensuremath{p}\xspace}
 \newcommand{\pxlio}{\texttt{pxlio}\xspace}
+\newcommand{\deltaptilde}{\ensuremath{\Delta \tilde{p}}\xspace}
 
 \newcommand{\eventclass}[1]{\framebox{\textsf{#1}}}
 \newcommand{\Ndata}{\ensuremath{{N_\mathrm{obs}}}\xspace}
 \newcommand{\Nmc}{\ensuremath{{N_\mathrm{SM}}}\xspace}
 \newcommand{\sigmamc}{\ensuremath{{\sigma_\mathrm{SM}}}\xspace}
 
+\newcommand{\mychi}{\ensuremath{\chi}\xspace}
+\newcommand{\paramregions}{\ensuremath{{n_\mathrm{regions}}}\xspace}
+\newcommand{\parambinbase}{\ensuremath{{n_\mathrm{base}}}\xspace}

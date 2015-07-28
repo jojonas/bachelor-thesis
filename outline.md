@@ -23,27 +23,54 @@ goal: ~30 pages
 			* region building
 			* p value
 			* p-tilde value
-
-* "Quickscan"-Algorithm (ca. 5 pages)
-	* criterium: sigmas
-	* criterium: nested regions
-	* vertical binning
+			
+* Motivations
+	* Runtime motivation
+	* at the same time: physics result untouched
+	
+* Difficulties/Solutions
+	* concept
+		* estimator
+		* pre-selection
+		* requirements
+	* MC error only => statistical term
+	* Region Plot => nested regions
+	* P vs Chi => magnitude binning
+	* P vs Chi => separation of excesses and deficits
+		
+	* Conclusion/Mitigation: Quickscan-Algorithm
+		* description
+		
+* Optimization of the algorithm
 	* parameters
-* Metrics: runtime, delta-p-tilde
+	* optimization goals: 
+		* delta-p-tilde
+			* spread through dicing
+		* runtime
+	* Determinism 
+		* seeds
+		* race conditions
+	* Results Parameter optimization on training data
+		* show examples
+		* 2D-plots
 
-* Delta-p-tilde spread through dicing (ca. 1 page)
-* Determinism (ca. 1 page)
-	* Seeding TRandom
-	* Race conditions -> mitigations
+* Results on validation sample
+	* Fullscan random dicing, Fullscan fixed seed, Qs same seed
 
-* Parameter optimization (ca. 2 pages)
-	* some example parameter sets
+* Final conclusion
 
-* More complete run for statistics with "optimal" parameters (ca. 1 page)
 
-* Results: runtime, delta-p-tilde (ca. 2 pages)
-	* delta-p-tilde: Full Scan (excl classes) w/o VS with quickscan
-* Results on incl classes: delta-p-tilde (ca. 1 page)
+
+
+
+Moneyplots
+==========
+
+* Delta-p-tilde 1D histogram: deviations smaller than random deviations
+* Delta-p-tilde 2D-histograms bc of parameter optimization
+* p vs. chi (fixed MC and fixed data): justify deficit/excess separation, monotonity, nested regions
+
+
 
 
 
