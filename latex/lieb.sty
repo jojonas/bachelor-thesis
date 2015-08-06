@@ -27,6 +27,7 @@
 
 % enables graphics inclusion
 \RequirePackage[final]{graphicx}
+\setkeys{Gin}{width=\linewidth}
 
 % floating figures (with [h])
 \RequirePackage{float}
@@ -45,6 +46,8 @@
 \RequirePackage{upgreek}
 
 % non-italic units with half space in front
+% units is deprecated (better use SIUnits instead)
+% but hepunits requires it
 \RequirePackage{units}
 \RequirePackage{hepunits}
 \addunit{\byte}{B}
@@ -76,6 +79,12 @@
 % for custom Math typesetting 
 \RequirePackage{mathtools}
 
+% ceil and floor macro
+\DeclarePairedDelimiter\bceil{\lceil}{\rceil}
+\newcommand{\ceil}{\bceil*}
+
+\DeclarePairedDelimiter\bfloor{\lfloor}{\rfloor}
+\newcommand{\floor}{\bfloor*}
 
 % =====================================
 % style
@@ -94,6 +103,12 @@
 % typesetting improvements
 \RequirePackage{microtype}
 
+% spacing between figures/tables and text
+\setlength{\intextsep}{1\parskip+1\baselineskip}
+
+% table padding
+\def\arraystretch{1.3}
+
 % =====================================
 % draft settings
 
@@ -108,7 +123,7 @@
 	
 	\SetWatermarkText{DRAFT}
 	\SetWatermarkScale{1.5}
-	\SetWatermarkLightness{0.85}
+	\SetWatermarkLightness{0.90}
 	
 	\RequirePackage[left]{lineno}
 	\linenumbers
@@ -129,13 +144,9 @@
 % x 10^A
 \newcommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
 
-% floor{...} command
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-
-
 \newcommand{\Minv}{\ensuremath{{M_\mathrm{inv}}}\xspace}
-\newcommand{\pT}{\ensuremath{{p_\mathrm{T}}}\xspace}
-\newcommand{\sumpT}{\ensuremath{{\sum \pT}}\xspace}
+\newcommand{\pT}{\ensuremath{{\va*{p_\mathrm{T}}}}\xspace}
+\newcommand{\sumpT}{\ensuremath{{\sum \abs{\pT}}}\xspace}
 \newcommand{\ET}{\ensuremath{{E_\mathrm{T}}}\xspace}
 \newcommand{\MET}{\ensuremath{{\slashed{E}_\mathrm{T}}}\xspace}
 
