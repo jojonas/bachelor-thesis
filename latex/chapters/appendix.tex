@@ -1,0 +1,79 @@
+% !TeX spellcheck = en_US
+% !TeX encoding = UTF-8
+% !TeX root = ../document.tex
+
+
+\renewcommand\thechapter{A}
+\chapter*{Appendix}
+\addcontentsline{toc}{chapter}{Appendix} 
+
+\section*{Optimization Results}
+
+\todo{Captions verbessern.}
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{| c | c | c ||  c | }
+		\cline{3-4} 
+		\multicolumn{2}{c|}{} & Classes with $\Delta \ptilde = 0$ & Fraction of total classes \\
+		
+		\hline
+		\multirow{14}{*}{\begin{sideways}Candidates\end{sideways}}
+		
+	& 1 & $8$ & \unit{7.4}{\%} \\ 
+	& 2 & $10$ & \unit{9.3}{\%} \\ 
+	& 5 & $27$ & \unit{25.0}{\%} \\ 
+	& 10 & $63$ & \unit{58.3}{\%} \\ 
+	& 20 & $89$ & \unit{82.4}{\%} \\ 
+	& 50 & $95$ & \unit{88.0}{\%} \\ 
+	& 100 & $103$ & \unit{95.4}{\%} \\ 
+	& 200 & $104$ & \unit{96.3}{\%} \\ 
+	& 300 & $106$ & \unit{98.1}{\%} \\ 
+	& 400 & $107$ & \unit{99.1}{\%} \\ 
+	& 500 & $107$ & \unit{99.1}{\%} \\ 
+	& 800 & $107$ & \unit{99.1}{\%} \\ 
+	& 1000 & $107$ & \unit{99.1}{\%} \\ 
+	& 1500 & $107$ & \unit{99.1}{\%} \\ 
+	& 2000 & $108$ & \unit{100.0}{\%} \\ 
+		
+		\hline
+	\end{tabular}
+	\caption{Result of the $\Delta \ptilde$ measurement. There are 108 classes in total for which the $\ptilde$ value is computed and as such for which the Quickscan is applied. All 5 trial runs yield exactly the same results, thus they are not separately listed here.}
+	\label{tbl:deltaptilde_results}
+\end{table}
+
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{| c | c | c  c  c  c  c || c | c | }
+		\cline{3-7} 
+		\multicolumn{2}{c}{} & \multicolumn{5}{|c||}{Trial Run} \\ \cline{3-9}
+		\multicolumn{2}{c|}{} & 1 & 2 & 3 & 4 & 5 & Combined & Speedup \\
+		
+		\cline{2-9}
+		\multicolumn{1}{c|}{} 
+		
+		& w/o QS & $5379$ & $5500$ & $5331$ & $5371$ & $5396$ & $5395 \pm 28$ & $1.0 \pm 0.0$ \\
+		
+		\hline
+		\multirow{14}{*}{\begin{sideways}Candidates\end{sideways}} 
+		
+		& 1 & $1460$ & $880$ & $973$ & $912$ & $885$ & $1022 \pm 111$ & $5.3 \pm 0.6$ \\ 
+		& 2 & $1054$ & $870$ & $871$ & $900$ & $886$ & $916 \pm 35$ & $5.9 \pm 0.2$ \\ 
+		& 5 & $945$ & $1038$ & $898$ & $909$ & $869$ & $932 \pm 29$ & $5.8 \pm 0.2$ \\ 
+		& 10 & $1142$ & $861$ & $985$ & $907$ & $879$ & $955 \pm 51$ & $5.7 \pm 0.3$ \\ 
+		& 20 & $930$ & $886$ & $889$ & $919$ & $913$ & $907 \pm 9$ & $5.9 \pm 0.1$ \\ 
+		& 50 & $940$ & $1073$ & $952$ & $937$ & $915$ & $963 \pm 28$ & $5.6 \pm 0.2$ \\ 
+		& 100 & $1555$ & $987$ & $1031$ & $993$ & $975$ & $1108 \pm 112$ & $4.9 \pm 0.5$ \\ 
+		& 200 & $1406$ & $1120$ & $1111$ & $1171$ & $1130$ & $1188 \pm 56$ & $4.5 \pm 0.2$ \\ 
+		& 300 & $1251$ & $1330$ & $1251$ & $1248$ & $1247$ & $1265 \pm 16$ & $4.3 \pm 0.1$ \\ 
+		& 400 & $1373$ & $1507$ & $1375$ & $1395$ & $1364$ & $1403 \pm 27$ & $3.8 \pm 0.1$ \\ 
+		& 500 & $1474$ & $1594$ & $1489$ & $1481$ & $1487$ & $1505 \pm 22$ & $3.6 \pm 0.1$ \\ 
+		& 800 & $1792$ & $1860$ & $1826$ & $1816$ & $1846$ & $1828 \pm 12$ & $3.0 \pm 0.0$ \\ 
+		& 1000 & $3254$ & $2045$ & $2064$ & $2022$ & $2041$ & $2285 \pm 242$ & $2.4 \pm 0.3$ \\ 
+		& 1500 & $3203$ & $2544$ & $2505$ & $2466$ & $2518$ & $2647 \pm 140$ & $2.0 \pm 0.1$ \\ 
+		& 2000 & $2971$ & $2765$ & $2820$ & $2787$ & $2863$ & $2841 \pm 36$ & $1.9 \pm 0.0$ \\ 
+		
+		\hline
+	\end{tabular}
+	\caption{Result of the computation time measurement. The numbers show the wall-clock time in seconds. The combined result $\overline{T} \pm \Delta T$ consist of the sample mean ${\overline{T} = \frac{1}{N} \sum_i T_i}$ and its deviation ${\Delta T = \frac{1}{\sqrt{N}} \sqrt{\frac{1}{N} \sum_i (T_i - \overline{T})^2}}$. As expected, the wall-clock time is subject to fluctuations of about \unit{1-10}{\%}. The resulting speedup $\frac{T_{\textrm{classic}}}{T_{\textrm{quickscan}}}$ is calculated using the mean values and is up to 5.9 times.}
+	\label{tbl:timing_results}
+\end{table}

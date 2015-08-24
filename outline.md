@@ -92,3 +92,25 @@ Tue-Presentation
 * Status Quo: Delta-p-tilde spread through dicing, runtime (1 slide max)
 * Results: runtime, delta-p-tilde (1 slide)
 * Outlook: separate subset, further performance optimizations (1 slide)
+
+
+
+Further Ideas
+=============
+* Problem: better estimator for Data=1, MC<<1 (almost 0)
+* Idea: Poisson->Gaussian approximation:
+	* use Poisson distribution with mean mu=MC to determine probability of finding Data=0 : p(Data=0) = 0^MC/0! * exp(-MC) = exp(-MC)
+	* calculate p(Data>0) = 1 - p(Data=0) = 1 - exp(-MC)
+	* use this probabilty and the error/quantile function to obtain a Gaussian z (number of sigmas)
+		* important: Quantile function Phi(z) = 1/2 * (1+erf(z/sqrt(2))), converts z to 1-p
+		* inverse quantile function: z = Phi_inv(1-p)
+		* plug in p = 1 - exp(-MC) from earlier: z = Phi_inv(1-p) = Phi_inv(exp(-MC))
+	* calculate Chi' containing systematics only: Chi' = abs(MC-Data)/sigma_MC
+	* both z and Chi' now represent deviations in units of sigma
+	* combine z and Chi' using Gaussian error propagation: 1/Chi^2 = 1/z^2 + 1/Chi'^2 
+	* Final Chi: Chi = 1/sqrt( 1/z^2 + 1/Chi'^2)
+* we have to investigate the limit for Data>1, approximation p(Data>0) invalid there
+* ideally should "automagically" go to Chi = abs(MC-Data)/sqrt(sigma_MC^2 + sqrt(MC)^2) = abs(MC-Data)/sqrt(sigma_MC^2 + MC)
+* note: Phi, Phiinv, Erf, Erfinv should be implemented in BOOST, usually approximated by rationals
+
+		

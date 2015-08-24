@@ -4,7 +4,7 @@
 
 \chapter{Model Unspecific Search in CMS}
 
-The Model Unspecific Search in CMS (\emph{MUSiC})\cite{Pieta2012MUSiC,Papacz2014Model} is an analysis procedure that compares observed data to the standard model expectation from Monte Carlo (MC) simulations. Unlike dedicated analyses that usually only regard a few final states, an unspecific search covers a broad spectrum of final states.
+The Model Unspecific Search in CMS (\emph{MUSiC})\cite{Pieta2012MUSiC,Papacz2014Model,Duchardt2015MUSiC} is an analysis procedure that compares observed data to the standard model expectation from Monte Carlo (MC) simulations. Unlike dedicated analyses that usually only regard a few final states, an unspecific search covers a broad spectrum of final states.
 This is especially useful since some theories predict small deviations in many final states, which on their own would not be classified as significant, but in total have a scientific impact.
 
 This chapter will focus on the MUSiC workflow. First, the motivation behind an unspecific search will be illustrated, then the three analysis steps \emph{skimming}, \emph{classification} and \emph{scanning} will be explained.
@@ -83,10 +83,11 @@ p \defeq
 The constant $C$ denotes a normalization factor that compensates for using $0$ as the lower limit of the integral. This is necessary since the Poisson distribution with a negative expectation is not physical.
 
 \subsection{The \ptilde value}
+\label{sec:music_ptilde}
 For a dedicated analysis looking at one fixed histogram region only, this \p~value would be sufficient to describe the statistical significance of the deviation. But since the scanning algorithm regards many regions to choose the most significant one from, the probability of finding a deviation somewhere in the distribution is larger than \p. This is called \emph{look elsewhere effect}.
 Since MUSiC is actually interested in the global significance of the distributions deviation, the look elsewhere effect has to be corrected.
-Therefor the scanning algorithm is applied multiple times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly shifted from a Gaussian distribution around \Nmc, having the width of the systematic error \sigmamc. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $N_\mathrm{pseudo}$ which takes the place of \Ndata. The dicing of pseudo experiments is performed in a correlated way, the chosen deviation in units of \sigmamc is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p~value.
-\begin{figure}[htbp]
+Therefor the scanning algorithm is applied multiple ($10^5$) times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly shifted from a Gaussian distribution around \Nmc, having the width of the systematic error \sigmamc. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $N_\mathrm{pseudo}$ which takes the place of \Ndata. The dicing of pseudo experiments is performed in a correlated way, the chosen deviation in units of \sigmamc is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p~value.
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=0.6\linewidth]{ptilde_illustration.pdf}
 	\caption{Illustration of a \ptilde calculation. 1000 pseudo-experiments have been conducted. The XYZ experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution.\todo{generate graphics to insert here}}

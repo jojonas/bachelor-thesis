@@ -98,7 +98,7 @@
 
 % OPTION colortheme
 % --> values = bluemagenta|bluegreen
-\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,rwth}[bluemagenta]{\def\cthesis@colortheme{\themenr}}
+\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,rwth,jonas}[bluemagenta]{\def\cthesis@colortheme{\themenr}}
 \setkeys[ct]{cthesis}{colortheme=bluemagenta}
 
 % OPTION bibsys
@@ -198,6 +198,11 @@
 	\cthesissetcolor{cmyk}{1., .5, 0, 0}{.45, .15, .0, 0}%
 }
 
+% sets Jonas' custom theme (red/blue) (http://colorbrewer2.org/?type=diverging&scheme=Spectral&n=5)
+\def\cthesissetcolorjonas{%
+	\cthesissetcolor{RGB}{57, 106, 177}{218, 124, 48}
+}
+
 % defines general colors
 \definecolor{ctcolorblack}{gray}{0}
 \definecolor{ctcolorgray}{gray}{.5}
@@ -213,6 +218,9 @@
 \or
 	% case 2 (colortheme == rwth)
 	\cthesissetcolorrwth
+\or
+	% case 3 (colortheme == jonas)
+	\cthesissetcolorjonas
 \else
 	% all other cases
 	\cthesissetcolorbluemagenta
