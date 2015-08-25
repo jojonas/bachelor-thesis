@@ -4,12 +4,11 @@
 
 \chapter{A Fast Search Algorithm}
 
-\section{Concept}
-The basic idea behind the \emph{Quickscan} algorithm is to select interesting regions as RoI (region of interest) candidates and discard most other regions, before the actual \p~value calculation.
-This is done by evaluating a less computation intensive estimator over all possible connected regions, and making a selection of the most significant deviations according to this estimator. Finally, the full \p~value and its integral are only calculated for the few candidate regions returned by the estimator.
+In this chapter, the basic concept and method of the Quickscan algorithm is described. Arising problems and their solutions within the algorithm are proposed. Finally, other approaches are mentioned, which have not been implemented in this works version of Quickscan.
 
-%\section{Components}
-%This chapter will describe additional complications that have been encountered during the development of the Quickscan algorithm and propose implemented solutions to each of them.
+\section{Concept}
+The goal of the Quickscan algorithm is to make the scanning process of pseudo-experiments more efficient. The efficiency improvement is achieved by preselecting interesting regions as RoI (region of interest) candidates and discard most other regions before the costly \p~value calculation.
+The selection is performed by evaluating a less computation intensive estimator over all possible connected regions, and making a selection of the most significant deviations according to this estimator. Finally, the full \p~value and its integral are only calculated for the few candidate regions returned by the estimator.
 
 \subsection{The Estimator}
 The choice of the estimator plays an important role in the efficiency of the selection. A commonly used quantity in particle physics is 
@@ -17,7 +16,7 @@ The choice of the estimator plays an important role in the efficiency of the sel
 \mychi = \frac{|\Ndata - \Nmc|}{\sigmamc'}
 \end{equation}
 Here the value $\sigmamc'$ describes the expected deviation. This is not $\sigmamc$, because that value only includes systematic uncertainties, e.g. finite Monte-Carlo statistics, and has been scaled by the luminosity.
-$\sigmamc'$ consists of the expected statistical deviation $\sqrt{\Nmc}$ and the systematical error $\sigmamc$. The two errors are added quadratically. Because $\Nmc \geq 0$, the expression can be simplified:
+$\sigmamc'$ consists of the expected statistical deviation $\sqrt{\Nmc}$ and the systematical error $\sigmamc$. The two errors are added quadratically. Because $\Nmc \geq \num{0}$, the expression can be simplified:
 \begin{equation}
 \sigmamc' \defeq \sqrt{\sigmamc^2 + \left(\sqrt{\Nmc}\right)^2} = \sqrt{\sigmamc^2 + \Nmc}
 \end{equation}
@@ -28,17 +27,17 @@ This value incorporated into the \mychi-value gives
 \end{equation}
 
 \subsection{Selection}
-In each distribution, the \mychi~value is calculated for each connected bin region. The most significant regions are stored in a list. This introduces a parameter of the Quickscan algorithm, \paramregions, which denotes the number of candidates kept in the list.
+In each distribution, the \mychi~value is calculated for each connected bin region. The most significant regions are stored in a list. This introduces a parameter of the Quickscan algorithm, \paramregions, which denotes the \emph{number of candidates} kept in the list.
 
 \subsection{Nested Region Handling}
 Using only the estimator and the selection of top \paramregions candidates, the algorithm tends to get stuck around single data points in the tail of the distribution. This is illustrated in figure \ref{fig:no_nested_region_handling}. 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{no_nested_region_handling}
-	\caption{Example distribution: pseudo experiment of the \eventclass{2e} \sumpT distribution, without special treatment of nested regions. The upper panel shows the distribution with the bin number (not the physical quantity) on the horizontal axis and the number of events in each bin on the vertical axis. The lower panel shows the 100 selected candidate regions, sorted by \mychi. The regions chosen by the different approaches are indicated in the upper panel. One can see that especially in the regions with 0-3 expected events, where the Poissonian approach $\sigma_N = \sqrt{N}$ fails, the \mychi value is too sensitive. The nested regions suppress different regions in the candidate list, such that the "true" RoI (as found without the Quickscan) is not detected.}
+	\caption{Example distribution: pseudo experiment of the \eventclass{2e} \sumpT distribution, without special treatment of nested regions. The upper panel shows the distribution with the bin number (not the physical quantity) on the horizontal axis and the number of events in each bin on the vertical axis. The lower panel shows the \num{100} selected candidate regions, sorted by \mychi. The regions chosen by the different approaches are indicated in the upper panel. One can see that especially in the regions with \numrange{0}{3} expected events, where the Poissonian approach $\sigma_N = \sqrt{N}$ fails, the \mychi value is too sensitive. The nested regions suppress different regions in the candidate list, such that the "true" RoI (as found without the Quickscan) is not detected.}
 	\label{fig:no_nested_region_handling}
 \end{figure}
-The pseudo experiment of the \eventclass{2e} \sumpT distribution shows a single event above a low background expectation. The regions with the highest \mychi gather around this excess. Comparison with the full scan shows that the "true" region of interest is found further left in the distribution, as a deficit with only 1 observed event in 9 expected.
+The pseudo experiment of the \eventclass{2e} \sumpT distribution shows a single event above a low background expectation. The regions with the highest \mychi gather around this excess. Comparison with a scan without the new algorithm shows that the "true" region of interest is found further left in the distribution, as a deficit with only \num{1} observed event in \num{9} expected.
 
 To suppress this behavior, an additional list of criteria is introduced, comparing region $A$ with region $B$:
 \begin{my_list}
@@ -48,7 +47,7 @@ To suppress this behavior, an additional list of criteria is introduced, compari
 	\item no additional data in $B \setminus A$: $\Ndata(A) = \Ndata(B)$
 \end{my_list}
 If all these conditions are met, then region $A$ is more significant than region $B$.
-The conditions can be motivated as follows: if a region contains an excess of observed event yield over MC event yield, and the region is extended while the amount of observed event remains the same, the difference between \Nmc and \Ndata is reduced. Since the error \sigmamc can only increase, the total significance of the extended region must be less than the original region, as long as it still contains an excess.
+The mathematical proof for this criterion is difficult, but it can be motivated as follows: if a region contains an excess of observed event yield over MC event yield, and the region is extended while the amount of observed events remains the same, the difference between \Nmc and \Ndata stays equal or is reduced. Since the error \sigmamc can only stay the same or increase, the total significance of the extended region must be less than the original region, as long as it still contains an excess.
 
 \begin{figure}[htb]
 	\centering
@@ -82,12 +81,19 @@ Based on this comparison, regions are immediately rejected if a more significant
 %Figure \ref{fig:pvschi_vary_data} also shows that for a constant magnitude of \Nmc, $\p(\chi)$ has two branches which correspond to excesses and deficits. Because of this, each magnitude bin is again split into two separate candidate lists containing \paramregions regions each.
 
 \section{The Final Algorithm}
-The solutions suggested in this chapter are combined in the final algorithm: the Quickscan algorithm maintains a single list of \paramregions candidates for each distribution in each class. Everytime a new candidate is considered for insertion into the list, first the nested region criteria are evaluated. If the region is not nested inside any other region in the list, its \mychi~value is evaluated and compared to the list. If it is larger than the lowest \mychi inside the list, the region is swapped into the list.
+The solutions suggested in this chapter are combined in the final algorithm: the Quickscan algorithm maintains a single list of \paramregions candidates for each distribution in each class. Every time a new candidate is considered for insertion into the list, first the nested region criteria are evaluated. If the region is not nested inside any other region in the list, its \mychi~value is computed and compared to the candidates in the list. If it is larger than the lowest \mychi inside the list, the region is swapped into the list.
 
-After all regions have been considered, the \p~value is evaluated for all collected candidates and the final region of interest is determined. 
+After all connected regions have been considered, the \p~value is evaluated for the candidate collection and the final region of interest is determined as one of the candidates. 
 
 \section{Preserving the \p~Value of Data}
-The Quickscan is only applied when the RoI of pseudo-experiments is calculated. Calculation of the \p~value of a data distribution is performed without the Quickscan algorithm.
+The Quickscan method is only applied to pseudo-experiments, not when calculating the \p~value of measured data, since there might still be cases in which a scan using Quickscan does not find the same region of interest as without. This assures that the data region of interest and its \p~value are definitely correctly computed.
 
+\section{Other Investigated Approaches}
+Another method that has been considered during this work is \emph{Magnitude Binning}. This ad-hoc solution also targets the low-statistic regions by differently treating regions with different \Nmc. Instead of keeping one candidate list for an entire distribution, Magnitude Binning keeps one candidate list for each magnitude of \Nmc. The magnitude index is calculated as
+\begin{equation}
+i = \floor{\log_\parambinbase(\Nmc)} = \floor{\frac{\log(\Nmc)}{\log(\parambinbase)}}
+\end{equation}
+This introduces a new parameter, \parambinbase, which indicates the size of a magnitude bin. Additionally, the total number of candidate regions is increased by an unknown amount, since the number of orders of magnitude are originally unknown.
 
+This method has been dropped since the methods proposed in this chapter sufficiently satisfy the Quickscan goals. The Magnitude Binning extension only introduces unnecessary complexity and an additional parameter.
 

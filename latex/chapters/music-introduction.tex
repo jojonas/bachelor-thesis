@@ -34,7 +34,7 @@ If the dataset originates from MC simulations, some properties of the simulated 
 
 \subsection{Kinematic distributions}
 Three kinematic variables are analyzed: the scalar sum of the magnitudes of all observed momenta \sumpT, the total invariant mass $\Minv = \abs{\sum p}$ and the missing transverse energy \MET.
-For each event class and each kinematic variable, one histogram is filled. The histograms are created with variable bin sizes according to the detector resolution\cite[p. 52]{Papacz2014Model}. Note that the vertical axis of histograms shown in this work carries the unit "Counts per \unit{10}{\GeV}", so to get the absolute number of events in a bin, the vertical data point has to be multiplied by the width of its bin in units of \unit{10}{\GeV}.
+For each event class and each kinematic variable, one histogram is filled. The histograms are created with variable bin sizes according to the detector resolution\cite[p. 52]{Papacz2014Model}. Note that the vertical axis of histograms shown in this work carries the unit "Counts per \SI{10}{\GeV}", so to get the absolute number of events in a bin, the vertical data point has to be multiplied by the width of its bin in units of \SI{10}{\GeV}.
 
 % MUSiC/EventClassFactory/Resolutions.hh als Quelle
 % Pauls Dis durchlesen
@@ -86,11 +86,11 @@ The constant $C$ denotes a normalization factor that compensates for using $0$ a
 \label{sec:music_ptilde}
 For a dedicated analysis looking at one fixed histogram region only, this \p~value would be sufficient to describe the statistical significance of the deviation. But since the scanning algorithm regards many regions to choose the most significant one from, the probability of finding a deviation somewhere in the distribution is larger than \p. This is called \emph{look elsewhere effect}.
 Since MUSiC is actually interested in the global significance of the distributions deviation, the look elsewhere effect has to be corrected.
-Therefor the scanning algorithm is applied multiple ($10^5$) times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly shifted from a Gaussian distribution around \Nmc, having the width of the systematic error \sigmamc. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $N_\mathrm{pseudo}$ which takes the place of \Ndata. The dicing of pseudo experiments is performed in a correlated way, the chosen deviation in units of \sigmamc is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p~value.
+Therefor the scanning algorithm is applied multiple (\num{e5}) times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly shifted from a Gaussian distribution around \Nmc, having the width of the systematic error \sigmamc. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $N_\mathrm{pseudo}$ which takes the place of \Ndata. The dicing of pseudo experiments is performed in a correlated way, the chosen deviation in units of \sigmamc is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p~value.
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=0.6\linewidth]{ptilde_illustration.pdf}
-	\caption{Illustration of a \ptilde calculation. 1000 pseudo-experiments have been conducted. The XYZ experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution.\todo{generate graphics to insert here}}
+	\caption{Illustration of a \ptilde calculation. \num{1000} pseudo-experiments have been conducted. The XYZ experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution.\todo{generate graphics to insert here}}
 	\label{fig:ptilde_illustration}
 \end{figure}
 Finally, the amount of pseudo experiments with more significant deviations than the observed one $p_\mathrm{data}$ is compared to the total amount of pseudo experiments conducted:

@@ -12,29 +12,30 @@
 \todo{Captions verbessern.}
 \begin{table}[htbp]
 	\centering
-	\begin{tabular}{| c | c | c ||  c | }
-		\cline{3-4} 
-		\multicolumn{2}{c|}{} & Classes with $\Delta \ptilde = 0$ & Fraction of total classes \\
-		
+	\begin{tabular}{| r | r || r | }
 		\hline
-		\multirow{14}{*}{\begin{sideways}Candidates\end{sideways}}
+		\paramregions & Classes with $\Delta \ptilde = 0$ & Fraction of total classes \\
 		
-	& 1 & $8$ & \unit{7.4}{\%} \\ 
-	& 2 & $10$ & \unit{9.3}{\%} \\ 
-	& 5 & $27$ & \unit{25.0}{\%} \\ 
-	& 10 & $63$ & \unit{58.3}{\%} \\ 
-	& 20 & $89$ & \unit{82.4}{\%} \\ 
-	& 50 & $95$ & \unit{88.0}{\%} \\ 
-	& 100 & $103$ & \unit{95.4}{\%} \\ 
-	& 200 & $104$ & \unit{96.3}{\%} \\ 
-	& 300 & $106$ & \unit{98.1}{\%} \\ 
-	& 400 & $107$ & \unit{99.1}{\%} \\ 
-	& 500 & $107$ & \unit{99.1}{\%} \\ 
-	& 800 & $107$ & \unit{99.1}{\%} \\ 
-	& 1000 & $107$ & \unit{99.1}{\%} \\ 
-	& 1500 & $107$ & \unit{99.1}{\%} \\ 
-	& 2000 & $108$ & \unit{100.0}{\%} \\ 
+		\hline \hline
+%Full & \num{108} & \SI{100.0}{\percent} \\
+%		\hline
 		
+\num{1} & \num{8} & \SI{7.4}{\percent} \\ 
+\num{2} & \num{10} & \SI{9.3}{\percent} \\ 
+\num{5} & \num{27} & \SI{25.0}{\percent} \\ 
+\num{10} & \num{63} & \SI{58.3}{\percent} \\ 
+\num{20} & \num{89} & \SI{82.4}{\percent} \\ 
+\num{50} & \num{95} & \SI{88.0}{\percent} \\ 
+\num{100} & \num{103} & \SI{95.4}{\percent} \\ 
+\num{200} & \num{104} & \SI{96.3}{\percent} \\ 
+\num{300} & \num{106} & \SI{98.1}{\percent} \\ 
+\num{400} & \num{107} & \SI{99.1}{\percent} \\ 
+\num{500} & \num{107} & \SI{99.1}{\percent} \\ 
+\num{800} & \num{107} & \SI{99.1}{\percent} \\ 
+\num{1000} & \num{107} & \SI{99.1}{\percent} \\ 
+\num{1500} & \num{107} & \SI{99.1}{\percent} \\ 
+\num{2000} & \num{108} & \SI{100.0}{\percent} \\ 
+
 		\hline
 	\end{tabular}
 	\caption{Result of the $\Delta \ptilde$ measurement. There are 108 classes in total for which the $\ptilde$ value is computed and as such for which the Quickscan is applied. All 5 trial runs yield exactly the same results, thus they are not separately listed here.}
@@ -43,37 +44,57 @@
 
 \begin{table}[htbp]
 	\centering
-	\begin{tabular}{| c | c | c  c  c  c  c || c | c | }
-		\cline{3-7} 
-		\multicolumn{2}{c}{} & \multicolumn{5}{|c||}{Trial Run} \\ \cline{3-9}
-		\multicolumn{2}{c|}{} & 1 & 2 & 3 & 4 & 5 & Combined & Speedup \\
+	\begin{tabular}{| r | r  r  r  r  r || r | r | }
+		\cline{2-6} 
+		\multicolumn{1}{c}{} & \multicolumn{5}{|c||}{Trial Run} \\ \hline
+		\paramregions & 1 & 2 & 3 & 4 & 5 & Combined & Speedup \\
 		
-		\cline{2-9}
-		\multicolumn{1}{c|}{} 
-		
-		& w/o QS & $5379$ & $5500$ & $5331$ & $5371$ & $5396$ & $5395 \pm 28$ & $1.0 \pm 0.0$ \\
-		
+		\hline \hline
+Full & $ \SI{5379}{\second} $ & $ \SI{5500}{\second} $ & $ \SI{5331}{\second} $ & $ \SI{5371}{\second} $ & $ \SI{5396}{\second} $ & \SI{5395 +- 28}{\second} & $ \num{1.0 +- 0.0} $ \\ 
 		\hline
-		\multirow{14}{*}{\begin{sideways}Candidates\end{sideways}} 
-		
-		& 1 & $1460$ & $880$ & $973$ & $912$ & $885$ & $1022 \pm 111$ & $5.3 \pm 0.6$ \\ 
-		& 2 & $1054$ & $870$ & $871$ & $900$ & $886$ & $916 \pm 35$ & $5.9 \pm 0.2$ \\ 
-		& 5 & $945$ & $1038$ & $898$ & $909$ & $869$ & $932 \pm 29$ & $5.8 \pm 0.2$ \\ 
-		& 10 & $1142$ & $861$ & $985$ & $907$ & $879$ & $955 \pm 51$ & $5.7 \pm 0.3$ \\ 
-		& 20 & $930$ & $886$ & $889$ & $919$ & $913$ & $907 \pm 9$ & $5.9 \pm 0.1$ \\ 
-		& 50 & $940$ & $1073$ & $952$ & $937$ & $915$ & $963 \pm 28$ & $5.6 \pm 0.2$ \\ 
-		& 100 & $1555$ & $987$ & $1031$ & $993$ & $975$ & $1108 \pm 112$ & $4.9 \pm 0.5$ \\ 
-		& 200 & $1406$ & $1120$ & $1111$ & $1171$ & $1130$ & $1188 \pm 56$ & $4.5 \pm 0.2$ \\ 
-		& 300 & $1251$ & $1330$ & $1251$ & $1248$ & $1247$ & $1265 \pm 16$ & $4.3 \pm 0.1$ \\ 
-		& 400 & $1373$ & $1507$ & $1375$ & $1395$ & $1364$ & $1403 \pm 27$ & $3.8 \pm 0.1$ \\ 
-		& 500 & $1474$ & $1594$ & $1489$ & $1481$ & $1487$ & $1505 \pm 22$ & $3.6 \pm 0.1$ \\ 
-		& 800 & $1792$ & $1860$ & $1826$ & $1816$ & $1846$ & $1828 \pm 12$ & $3.0 \pm 0.0$ \\ 
-		& 1000 & $3254$ & $2045$ & $2064$ & $2022$ & $2041$ & $2285 \pm 242$ & $2.4 \pm 0.3$ \\ 
-		& 1500 & $3203$ & $2544$ & $2505$ & $2466$ & $2518$ & $2647 \pm 140$ & $2.0 \pm 0.1$ \\ 
-		& 2000 & $2971$ & $2765$ & $2820$ & $2787$ & $2863$ & $2841 \pm 36$ & $1.9 \pm 0.0$ \\ 
-		
+
+$ \num{1} $ & $ \SI{1460}{\second} $ & $ \SI{880}{\second} $ & $ \SI{973}{\second} $ & $ \SI{912}{\second} $ & $ \SI{885}{\second} $ & \SI{1022 +- 111}{\second} & $ \num{5.3 +- 0.6} $ \\ 
+$ \num{2} $ & $ \SI{1054}{\second} $ & $ \SI{870}{\second} $ & $ \SI{871}{\second} $ & $ \SI{900}{\second} $ & $ \SI{886}{\second} $ & \SI{916 +- 35}{\second} & $ \num{5.9 +- 0.2} $ \\ 
+$ \num{5} $ & $ \SI{945}{\second} $ & $ \SI{1038}{\second} $ & $ \SI{898}{\second} $ & $ \SI{909}{\second} $ & $ \SI{869}{\second} $ & \SI{932 +- 29}{\second} & $ \num{5.8 +- 0.2} $ \\ 
+$ \num{10} $ & $ \SI{1142}{\second} $ & $ \SI{861}{\second} $ & $ \SI{985}{\second} $ & $ \SI{907}{\second} $ & $ \SI{879}{\second} $ & \SI{955 +- 51}{\second} & $ \num{5.7 +- 0.3} $ \\ 
+$ \num{20} $ & $ \SI{930}{\second} $ & $ \SI{886}{\second} $ & $ \SI{889}{\second} $ & $ \SI{919}{\second} $ & $ \SI{913}{\second} $ & \SI{907 +- 9}{\second} & $ \num{5.9 +- 0.1} $ \\ 
+$ \num{50} $ & $ \SI{940}{\second} $ & $ \SI{1073}{\second} $ & $ \SI{952}{\second} $ & $ \SI{937}{\second} $ & $ \SI{915}{\second} $ & \SI{963 +- 28}{\second} & $ \num{5.6 +- 0.2} $ \\ 
+$ \num{100} $ & $ \SI{1555}{\second} $ & $ \SI{987}{\second} $ & $ \SI{1031}{\second} $ & $ \SI{993}{\second} $ & $ \SI{975}{\second} $ & \SI{1108 +- 112}{\second} & $ \num{4.9 +- 0.5} $ \\ 
+$ \num{200} $ & $ \SI{1406}{\second} $ & $ \SI{1120}{\second} $ & $ \SI{1111}{\second} $ & $ \SI{1171}{\second} $ & $ \SI{1130}{\second} $ & \SI{1188 +- 56}{\second} & $ \num{4.5 +- 0.2} $ \\ 
+$ \num{300} $ & $ \SI{1251}{\second} $ & $ \SI{1330}{\second} $ & $ \SI{1251}{\second} $ & $ \SI{1248}{\second} $ & $ \SI{1247}{\second} $ & \SI{1265 +- 16}{\second} & $ \num{4.3 +- 0.1} $ \\ 
+$ \num{400} $ & $ \SI{1373}{\second} $ & $ \SI{1507}{\second} $ & $ \SI{1375}{\second} $ & $ \SI{1395}{\second} $ & $ \SI{1364}{\second} $ & \SI{1403 +- 27}{\second} & $ \num{3.8 +- 0.1} $ \\ 
+$ \num{500} $ & $ \SI{1474}{\second} $ & $ \SI{1594}{\second} $ & $ \SI{1489}{\second} $ & $ \SI{1481}{\second} $ & $ \SI{1487}{\second} $ & \SI{1505 +- 22}{\second} & $ \num{3.6 +- 0.1} $ \\ 
+$ \num{800} $ & $ \SI{1792}{\second} $ & $ \SI{1860}{\second} $ & $ \SI{1826}{\second} $ & $ \SI{1816}{\second} $ & $ \SI{1846}{\second} $ & \SI{1828 +- 12}{\second} & $ \num{3.0 +- 0.0} $ \\ 
+$ \num{1000} $ & $ \SI{3254}{\second} $ & $ \SI{2045}{\second} $ & $ \SI{2064}{\second} $ & $ \SI{2022}{\second} $ & $ \SI{2041}{\second} $ & \SI{2285 +- 242}{\second} & $ \num{2.4 +- 0.3} $ \\ 
+$ \num{1500} $ & $ \SI{3203}{\second} $ & $ \SI{2544}{\second} $ & $ \SI{2505}{\second} $ & $ \SI{2466}{\second} $ & $ \SI{2518}{\second} $ & \SI{2647 +- 140}{\second} & $ \num{2.0 +- 0.1} $ \\ 
+$ \num{2000} $ & $ \SI{2971}{\second} $ & $ \SI{2765}{\second} $ & $ \SI{2820}{\second} $ & $ \SI{2787}{\second} $ & $ \SI{2863}{\second} $ & \SI{2841 +- 36}{\second} & $ \num{1.9 +- 0.0} $ \\ 
+
+ 
+
 		\hline
 	\end{tabular}
-	\caption{Result of the computation time measurement. The numbers show the wall-clock time in seconds. The combined result $\overline{T} \pm \Delta T$ consist of the sample mean ${\overline{T} = \frac{1}{N} \sum_i T_i}$ and its deviation ${\Delta T = \frac{1}{\sqrt{N}} \sqrt{\frac{1}{N} \sum_i (T_i - \overline{T})^2}}$. As expected, the wall-clock time is subject to fluctuations of about \unit{1-10}{\%}. The resulting speedup $\frac{T_{\textrm{classic}}}{T_{\textrm{quickscan}}}$ is calculated using the mean values and is up to 5.9 times.}
+	\caption{Result of the computation time measurement. The numbers show the wall-clock time in seconds. The combined result $\overline{T} \pm \Delta T$ consist of the sample mean ${\overline{T} = \frac{1}{N} \sum_i T_i}$ and its deviation ${\Delta T = \frac{1}{\sqrt{N}} \sqrt{\frac{1}{N} \sum_i (T_i - \overline{T})^2}}$. As expected, the wall-clock time is subject to fluctuations of about \SIrange{1}{10}{\percent}. The resulting speedup $\frac{T_{\textrm{Full}}}{T_{\textrm{QS}}}$ is calculated using the mean values and is up to 5.9 times.}
 	\label{tbl:timing_results}
+\end{table}
+
+
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{ r | c | c |}
+		\cline{2-3}
+		& optimization & validation \\ \cline{2-3}
+		data & \multicolumn{2}{c|}{2012, $\sqrt{s} = \SI{8}{\TeV}$} \\ 
+		luminosity & \multicolumn{2}{c|}{ $L = \SI{19.7}{\femto\barn^{-1}}$ } \\ \cline{2-3}
+		event classes & excl. & excl. \\ 
+		distribution & \sumpT & \Minv \\
+		N-jet threshold & \num{2} & - \\
+		\p~threshold & \num{0.3} & \num{0.3} \\
+		dicing rounds & \num{1000} & \num{100000} \\
+		hits threshold & - & \num{100} \\
+		coverage threshold & \num{3} & \num{3} \\
+		Fill-Up & yes & yes \\
+		\cline{2-3}
+	\end{tabular}
+	\caption{MUSiC configuration values for the optimization and validation runs.}
+	\label{tbl:music_configuration}
 \end{table}
