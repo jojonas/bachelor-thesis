@@ -2,10 +2,13 @@
 % !TeX encoding = UTF-8
 % !TeX root = ../document.tex
 
+\vspace*{5mm}
 \vspace*{\fill}
 {\usekomafont{chapter}Kurzdarstellung}
 \chapterheadendvskip
 
-Die modellunspezifische Suche MUSiC (engl.: Model Unspecific Search in CMS) wertet großen Datenmengen des CMS Experiments aus. Dabei werden in den kinematischen Distributionen Abweichungen zwischen gemessenen Zählraten und Monte-Carlo-Simulationen des Standardmodelles identifiziert. Anders als konventionelle dedizierte Analysen beschäftigt sich MUSiC nicht nur mit einigen wenigen Zerfallskanälen, sondern behandelt eine große Bandbreite an Endzuständen. 
-Die Berechnung der signifikantesten Abweichung in jeder kinematischen Distribution ist verhältnismäßig rechenintensiv. Daher wird dem Algorithmus in dieser Arbeit ein zusätzlicher Auswahlschritt hinzugefügt, der die Performance deutlich erhöht und dabei das physikalische Ergebnis unbeeinflusst lässt. 
-Der \emph{Quickscan} genannte Algorithmus wird in dieser Arbeit motiviert, beschrieben, optimiert und validiert. Zum Schluss beträgt der Performancegewinn ungefähr \si{920}{\%} und ermöglicht es der MUSiC-Gruppe, zukünftige Analysen schneller auszuführen.
+Das CMS Experiment am LHC produziert sehr große Datenmengen: pro Sekunde werden rund \SI{20}{\tera\byte} an Daten von der Detektorhardware generiert. Selbstverständlich erfordert die Auswertung viel Rechenleistung. Mithilfe mehrerer Algorithmen wird dem Detektorsignal eine physikalische Bedeutung zugewiesen, aufgrund derer modernste Analysen durchgeführt werden.
+
+Die modellunspezifische Suche MUSiC (engl: Model Unspecific Search in CMS) ist eine Analyse, die auf einem breiten Spektrum von Endzuständen arbeitet. Dabei werden kinematische Verteilungen der Endzustände erstellt und mit Erwartungen aus Monte-Carlo-Simulationen verglichen. Die Suche nach Abweichungen macht MUSiC sensitiv gegenüber Anzeichen von Physik jenseits des Standardmodelles.
+
+Diese Arbeit erklärt, implementiert und validiert einen zusätzlichen Arbeitsschritt der MUSiC-Analyse, der die Rechenzeit drastisch reduziert.

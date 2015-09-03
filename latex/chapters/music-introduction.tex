@@ -5,35 +5,62 @@
 \chapter{Model Unspecific Search in CMS}
 
 The Model Unspecific Search in CMS (\emph{MUSiC})\cite{Pieta2012MUSiC,Papacz2014Model,Duchardt2015MUSiC} is an analysis procedure that compares observed data to the standard model expectation from Monte Carlo (MC) simulations. Unlike dedicated analyses that usually only regard a few final states, an unspecific search covers a broad spectrum of final states.
-This is especially useful since some theories predict small deviations in many final states, which on their own would not be classified as significant, but in total have a scientific impact.
+This is especially useful since some theories predict small deviations in many final states, which on their own would not be classified as significant, but are relevant in sum.
 
 This chapter will focus on the MUSiC workflow. First, the motivation behind an unspecific search will be illustrated, then the three analysis steps \emph{skimming}, \emph{classification} and \emph{scanning} will be explained.
 
 \section{Motivation}
-Since a Higgs boson candidate has been discovered at the LHC\cite{Ao2015Combined}, all predicted SM particles have been observed.
+Since a Higgs boson candidate has been discovered at the LHC\cite{Ao2015Combined}, all particles predicted by the standard model have been observed.
 Nevertheless there are many unsolved problems in modern particle physics. The most noticeable examples are the Higgs mass hierarchy problem, the matter/antimatter asymmetry, dark matter and energy and the possibility of unification theories. Various theories, such as supersymmetric extensions (SUSY), propose solutions, but they are currently lacking evidence.
-Expected signatures of these models would show up in a large range of final states. For some models, narrow resonances are predicted, other result in a slight signature in the high-energy tail of the distributions.
-The MUSiC analysis is sensitive to these kind of deviations.
+Expected signatures of these models could show up in a large range of final states. For some models, narrow resonances are predicted, others result in small deviations in the high-energy tail of the distributions.
+The MUSiC analysis is sensitive to these kinds of deviations.
 Additionally, MUSiC can identify deviations between MC and data that originate from non-physics sources, uncovering weaknesses in the Monte Carlo simulation.
 
 \section{Data Preprocessing}
 The goal of preprocessing is to gather events from different data sources and convert them to a unified format containing only information relevant to MUSiC. AOD (analysis object data) files of observed as well as simulated events are stored on non-local parts of the computing grid, and preprocessed there. The stripped results are contained in PXL I/O files\cite{BBE+2012Development} and returned to the local computing grid.
 
+\section{Object Identification}
+During the object identification step, criteria are applied to the objects identified by Particle-Flow during the reconstruction. A summary of the identification requirements, which are developed by dedicated groups within the CMS collaboration, is shown in table \ref{tbl:id_criteria}. More detailed information can be found in \cite{DHK+2014MUSiC}.
+
+\begin{table}
+	\centering
+	\begin{tabular}{ 
+			c 
+			S[table-format=2,table-comparator=true] 
+			S[table-format=1.3,table-comparator=true]
+			l 
+		}
+		\toprule
+		{Object} & {\pT / \si{\giga\electronvolt}} & {$|\eta|$} & {Identification Summary} \\
+		\midrule
+		\Pmu & > 25 & < 2.1 & track quality, isolation, dedicated high-\pT \\
+		\Pe & > 25 & < 2.5 & track quality, isolation, dedicated high-\ET \\
+		\Pphoton & > 25 & < 1.442 & isolation, veto against \Pe from conversions \\
+		jet & > 50 & < 2.4 & anti-$\mathrm{k}_\mathrm{t}$ algorithm ($R = \num{0.5}$) \\
+		\MET & > 50 & & \\
+		\bottomrule
+	\end{tabular}
+	\caption{Identification criteria for MUSiC physics objects\cite{DHK+2014MUSiC}.}
+	\label{tbl:id_criteria}
+\end{table}
+		
+
 \section{Classification}
-During the classification step, events are grouped into \emph{event classes} (EC) according to their physics content in the final state. 
-Missing transverse energy is treated as separate physics object. There are three  types of event classes: \emph{exclusive}, \emph{inclusive} and \emph{jet inclusive}. Final states of events in exclusive event classes contain exactly the objects indicated in the event class name. 
+During the classification step, events are grouped into \emph{event classes} (EC) according to their physics object content in the final state, with the definitions from the previous section. 
+
+There are three  types of event classes: \emph{exclusive}, \emph{inclusive} and \emph{jet inclusive}. Final states of events in exclusive event classes contain exactly the objects indicated in the event class name. 
 Events in the exclusive EC \eventclass{1e + 1MET} contain only 1 electron and missing transverse energy in the final state, but no other physics objects.
 Events in the inclusive EC can contain any other objects besides the indicated ones. \eventclass{1e + 1MET + X} contains at least 1 electron and missing transverse energy. 
-Additionally, there are \emph{jet inclusive} event classes (e.g. \eventclass{1e + 1MET + Njet}), that exclusively contain the mentioned objects and zero or more jets, making the analysis more robust to initial and final state radiation caused by the emission of gluons in the initial or final state.
+Additionally, there are \emph{jet inclusive} event classes (e.g. \eventclass{1e + 1MET + Njet}), that exclusively contain the mentioned objects and zero or additional jets, making the analysis more robust to initial and final state radiation caused by the emission of gluons in the initial or final state.
 
 These definitions imply that each event is contained in exactly one exclusive EC, at least one inclusive EC and at least one jet inclusive EC.
 
-The classification algorithm automatically adjusts the possible event classes to the events actually contained in the dataset, dynamically creating new classes. 
+The classification algorithm automatically adjusts the possible event classes to the events actually present in the dataset, dynamically creating new classes. 
 
 If the dataset originates from MC simulations, some properties of the simulated processes are shifted within their uncertainties to estimate their impact on the classes. Additionally, the amount of simulated events is rescaled to match the data luminosity.
 
 \subsection{Kinematic distributions}
-Three kinematic variables are analyzed: the scalar sum of the magnitudes of all observed momenta \sumpT, the total invariant mass $\Minv = \abs{\sum p}$ and the missing transverse energy \MET.
+Three kinematic variables are analyzed: the scalar sum of the magnitudes of all observed momenta \sumpT, the total invariant mass $\Minv = \abs{\sum \vb*{p}}$ and the missing transverse energy \MET.
 For each event class and each kinematic variable, one histogram is filled. The histograms are created with variable bin sizes according to the detector resolution\cite[p. 52]{Papacz2014Model}. Note that the vertical axis of histograms shown in this work carries the unit "Counts per \SI{10}{\GeV}", so to get the absolute number of events in a bin, the vertical data point has to be multiplied by the width of its bin in units of \SI{10}{\GeV}.
 
 % MUSiC/EventClassFactory/Resolutions.hh als Quelle
@@ -86,11 +113,11 @@ The constant $C$ denotes a normalization factor that compensates for using $0$ a
 \label{sec:music_ptilde}
 For a dedicated analysis looking at one fixed histogram region only, this \p~value would be sufficient to describe the statistical significance of the deviation. But since the scanning algorithm regards many regions to choose the most significant one from, the probability of finding a deviation somewhere in the distribution is larger than \p. This is called \emph{look elsewhere effect}.
 Since MUSiC is actually interested in the global significance of the distributions deviation, the look elsewhere effect has to be corrected.
-Therefor the scanning algorithm is applied multiple (\num{e5}) times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly shifted from a Gaussian distribution around \Nmc, having the width of the systematic error \sigmamc. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $N_\mathrm{pseudo}$ which takes the place of \Ndata. The dicing of pseudo experiments is performed in a correlated way, the chosen deviation in units of \sigmamc is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p~value.
-\begin{figure}[htb]
+Therefore the scanning algorithm is applied multiple (\num{e5}) times on randomly diced pseudo-data. For each pseudo experiment, first the expected mean $\Nmc'$ is randomly shifted from a Gaussian distribution around \Nmc, having the width of the systematic error \sigmamc. Taking this new pseudo-mean, a random Poisson number is chosen as new observed value $N_\mathrm{pseudo}$ which takes the place of \Ndata. The dicing of pseudo experiments is performed in a correlated way, the chosen deviation in units of \sigmamc is shared between all distribution in all event classes. The complete scanning algorithm is repeated for each pseudo-experiment, finding a region of interest and its \p~value.
+\begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{ptilde_illustration.pdf}
-	\caption{Illustration of a \ptilde calculation. \num{1000} pseudo-experiments have been conducted. The XYZ experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution.\todo{generate graphics to insert here}}
+	\includegraphics{ptilde_illustration.pdf}
+	\caption{Illustration of a \ptilde calculation. \num{10000} pseudo-experiments have been conducted. The \num{199} experiments on the right of $p_\mathrm{data}$ have shown a more extreme deviation somewhere in the distribution, resulting in $\ptilde \approx \num{0.02}$.}
 	\label{fig:ptilde_illustration}
 \end{figure}
 Finally, the amount of pseudo experiments with more significant deviations than the observed one $p_\mathrm{data}$ is compared to the total amount of pseudo experiments conducted:

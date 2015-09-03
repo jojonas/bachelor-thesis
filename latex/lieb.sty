@@ -31,6 +31,9 @@
 
 % floating figures (with [h])
 \RequirePackage{float}
+\RequirePackage{placeins}
+\floatplacement{table}{h}
+\floatplacement{figure}{h}
 
 % references (without being highlighted)
 \RequirePackage[
@@ -51,7 +54,15 @@
 	range-phrase={ to },
 	mode=text,
 	separate-uncertainty=true,
+	group-digits=integer,
+	group-minimum-digits=4,
+	table-number-alignment=right,
+	table-text-alignment=center,
+	table-unit-alignment=left,
+	locale=US,
 ]{siunitx}
+% declare upright micro symbol
+\DeclareSIPrefix{\micro}{$\upmu$}{-6}
 
 % nice fractions (for quark charges)
 \RequirePackage{nicefrac}
@@ -76,9 +87,17 @@
 
 % additional multirow/multicolumn feature in tables
 \RequirePackage{multirow}
+\RequirePackage{bigdelim}
 \RequirePackage{rotating}
 
-% naggs about obsolete commands
+% pretty tables
+\RequirePackage{booktabs}
+
+% pretty ToC
+\RequirePackage[titles]{tocloft}
+\renewcommand\cftchapfont{\thesisparagraphfont}
+
+% nagging about obsolete commands
 \RequirePackage[l2tabu, orthodox]{nag}
 
 % for custom Math typesetting 
@@ -163,7 +182,7 @@
 \newcommand{\eqdef}{=\vcentcolon}
 
 \newcommand{\Minv}{\ensuremath{{M_\mathrm{inv}}}\xspace}
-\newcommand{\pT}{\ensuremath{{\va*{p_\mathrm{T}}}}\xspace}
+\newcommand{\pT}{\ensuremath{{\vec{p}_\mathrm{T}}}\xspace}
 \newcommand{\sumpT}{\ensuremath{{\sum \abs{\pT}}}\xspace}
 \newcommand{\ET}{\ensuremath{{E_\mathrm{T}}}\xspace}
 \newcommand{\MET}{\ensuremath{{\slashed{E}_\mathrm{T}}}\xspace}
