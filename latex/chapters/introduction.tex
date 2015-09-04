@@ -120,7 +120,7 @@ In the outer part one finds the iron return yoke interspersed with \emph{muon dr
 
 \subsection{Coordinate System}
 The CMS collaboration has defined a spherical coordinate system inside the detector, as illustrated in figure \ref{fig:cms_coordinate_system}. The origin is located in the interaction point, the z-axis points along the beam pipe towards the Jura mountains. The x-axis is defined towards the center of the LHC ring. To complete the right-handed orthogonal coordinate system, the y-axis points upwards, orthogonally from the x-z-plane. 
-An azimuthal angle $\phi$ is defined from the x-axis in the x-y plane. The polar angle $\theta$ is measured from the z-axis. One can also define a radial coordinate $r$ in the x-y plane, as distance from the z-axis.\cite[p. 2]{Co2008CMS} 
+An azimuthal angle $\phi$ is defined from the x-axis in the x-y plane. The polar angle $\theta$ is measured from the z-axis. One can also define a radial coordinate $r$ in the x-y plane, as distance from the z-axis.\cite[p.~2]{Co2008CMS} 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{CMS_coordinate_system.pdf}
@@ -135,7 +135,7 @@ The sum of all transverse momenta in a final state is usually not equals to zero
 Another commonly used quantity is the pseudo-rapidity $\eta = -\ln \tan(\theta/2)$, which has the property that distances $\Delta\eta$ are Lorentz invariant.
 
 \section{Bunch Crossings, Events, Collisions and Pileup}
-For acceleration purposes, the protons circulating in the LHC beam pipe are grouped into 2808 \emph{bunches}\cite[p.4]{EB2008LHC}. A \emph{bunch crossing} happens every \SI{50}{\nano\second} (2012), defining an \emph{event}. During an event, multiple pp-collisions can occur. The collision containing the vertex with the largest transverse momentum is called \emph{hard interaction}. All other collisions that do not correspond to the physics process of the hard interaction are classified as \emph{pileup}.
+For acceleration purposes, the protons circulating in the LHC beam pipe are grouped into 2808 \emph{bunches}\cite[p.~4]{EB2008LHC}. A \emph{bunch crossing} happens every \SI{50}{\nano\second} (2012), defining an \emph{event}. During an event, multiple pp-collisions can occur. The collision containing the vertex with the largest transverse momentum is called \emph{hard interaction}. All other collisions that do not correspond to the physics process of the hard interaction are classified as \emph{pileup}.
 
 \section{Trigger}
 Since the raw data for each event is about $\order{\SI{1}{\mega\byte}}$, the throughput required to transfer all data would be $\order{\SI{20}{\tera\byte}}$ per second. This amount of data is too much for current hard- and software, thus a selection mechanism is introduced to match the amount of recorded data to the networking, processing and storage capabilities. This system is called \emph{trigger}. The CMS trigger system consists of two layers, the "Level-1 Trigger" (L1), implemented in hardware on site, and the software "High-Level-Trigger" (HLT), located at a computing farm close to the detector. The triggers process the limited input from the detector and decide whether an event is worth storing on disk, based on physics arguments. These requirements reduce the data amount by $\order{\num{e6}}$.

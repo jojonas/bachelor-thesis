@@ -31,7 +31,7 @@ In each distribution, the \mychi~value is calculated for each connected bin regi
 \begin{figure}
 	\centering
 	\includegraphics{no_nested_region_handling}
-	\caption{Example distribution: pseudo experiment of the \eventclass{2e} \sumpT distribution, without special treatment of nested regions. The upper panel shows the distribution with the bin number (not the physical quantity) on the horizontal axis and the number of events in each bin on the vertical axis. The lower panel shows the \num{100} selected candidate regions, sorted by \mychi. The regions chosen by the different approaches are indicated in the upper panel. \p denotes the full scan \p~value, while \mychi indicates value of the Quickscan estimator. One can see that especially in the regions where the Poissonian approach $\sigma_N = \sqrt{N}$ fails, the \mychi value is too sensitive. The nested regions suppress different regions in the candidate list, such that the "true" RoI (as found without the Quickscan) is not detected.}
+	\caption{Example distribution: Pseudo experiment of the \eventclass{2e} \sumpT distribution, without special treatment of nested regions. The upper panel shows the distribution with the bin number (not the physical quantity) on the horizontal axis and the number of events in each bin on the vertical axis. The lower panel shows the \num{100} selected candidate regions, sorted by \mychi. The regions chosen by the different approaches are indicated in the upper panel. \p denotes the full scan \p~value, while \mychi indicates value of the Quickscan estimator. One can see that especially in the regions where the Poissonian approach $\sigma_N = \sqrt{N}$ fails, the \mychi value is too sensitive. The nested regions suppress different regions in the candidate list, such that the "true" RoI (as found without the Quickscan) is not detected.}
 	\label{fig:no_nested_region_handling}
 \end{figure}
 
@@ -42,12 +42,12 @@ The pseudo experiment of the \eventclass{2e} \sumpT distribution shows a single 
 To suppress this behavior, an additional list of criteria is introduced, comparing region $A$ with region $B$:
 \begin{my_list}
 	\item $A$ is nested inside of $B$
-	\item excess of data in $A$: $\Ndata(A) > \Nmc(A)$
-	\item excess of data in $B$: $\Ndata(B) > \Nmc(B)$
-	\item no additional data in $B \setminus A$: $\Ndata(A) = \Ndata(B)$
+	\item Excess of data in $A$: $\Ndata(A) > \Nmc(A)$
+	\item Excess of data in $B$: $\Ndata(B) > \Nmc(B)$
+	\item No additional data in $B \setminus A$: $\Ndata(A) = \Ndata(B)$
 \end{my_list}
 If all these conditions are met, then region $A$ is more significant than region $B$.
-The mathematical proof for this criterion is difficult, but it can be motivated as follows: if a region contains an excess of observed event yield over MC event yield, and the region is extended while the amount of observed events remains the same, the difference between \Nmc and \Ndata stays equal or is reduced. Since the error \sigmamc can only stay the same or increase, the total significance of the extended region must be less than the original region, as long as it still contains an excess.
+The mathematical proof for this criterion is difficult, but it can be motivated as follows: If a region contains an excess of observed event yield over MC event yield, and the region is extended while the amount of observed events remains the same, the difference between \Nmc and \Ndata stays equal or is reduced. Since the error \sigmamc can only stay the same or increase, the total significance of the extended region must be less than the original region, as long as it still contains an excess.
 
 \begin{figure}
 	\centering
@@ -59,7 +59,7 @@ Based on this comparison, regions are immediately rejected if a more significant
 \FloatBarrier
 
 \section{The Final Algorithm}
-The solutions suggested in this chapter are combined in the final algorithm: the Quickscan algorithm maintains a single list of \paramregions candidates for each distribution in each class. Every time a new candidate is considered for insertion into the list, first the nested region criteria are evaluated. If a outer region is found for which the criterion is fulfilled, the candidate is immediately swapped into the list. Otherwise, its \mychi~value is computed and compared to the candidates in the list. If it is larger than the lowest \mychi inside the list, the region is also swapped in. 
+The solutions suggested in this chapter are combined in the final algorithm: The Quickscan algorithm maintains a single list of \paramregions candidates for each distribution in each class. Every time a new candidate is considered for insertion into the list, first the nested region criteria are evaluated. If a parent region is found for which the criteria are fulfilled, the candidate immediately replaces the parent region already in the list. Otherwise, its \mychi~value is computed and compared to the candidates in the list. If it is larger than the lowest \mychi inside the list, the region is also inserted.
 
 After all connected regions have been considered, the \p~value is evaluated for the candidate collection and the final region of interest is determined as one of the candidates. 
 \newpage 
