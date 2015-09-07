@@ -23,6 +23,18 @@
 \date{09.09.2015}
 \author{Jonas Lieb}
 
+\makeatletter
+\let\theauthor\@author
+\let\thetitle\@title
+\makeatother
+
+\hypersetup{
+	pdftex,
+	pdfauthor={\theauthor},
+	pdftitle={\thetitle},
+	pdflang={en-US},
+}
+
 \begin{document}
 
 \cleardoublepage

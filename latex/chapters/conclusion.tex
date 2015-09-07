@@ -12,7 +12,7 @@ Additionally, the Quickscan has not only been developed and validated, but also 
 \section{Outlook}
 Even though the result of this work increases scanning efficiency by almost \num{10} times, there is room for improvement:
 
-The Quickscan algorithm could greatly benefit from an estimator that improves handling of regions with $\Nmc < \num{3}$. A possible solution could be to use a Poisson distribution around the number of MC events and calculate its \p~value back to a Gaussian statistic before combining with the systematical uncertainty. This could lead to a better mathematical understanding of the algorithm, especially since the ad-hoc nested region handling may turn out to be superfluous.
+The Quickscan algorithm could greatly benefit from an estimator that improves handling of regions with a low number of events. A possible solution could be to use a Poisson distribution around the number of MC events and calculate its \p~value back to a Gaussian statistic before combining with the systematical uncertainty. This could lead to a better mathematical understanding of the algorithm, especially since the ad-hoc nested region handling may turn out to be superfluous.
 
 Furthermore, the parallelization of the general scanning algorithm could be improved. The correlated dicing of the pseudo-experiments requires communication between the worker tasks. The correlation could instead be handled by a fixed seed of the worker's pseudo-random number generators. This would make the scanning step trivially parallelizable (either over the classes or over the pseudo-experiments), enabling it to run on a computing grid instead of the 64-core MUSiC host.
 
