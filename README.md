@@ -10,6 +10,6 @@ The Model Unspecific Search in CMS (MUSiC) is an analysis carried out on a wide 
 By searching for deviations, MUSiC is sensitive to indications of physics beyond the standard model.
 This thesis proposes, implements and validates an additional step in the MUSiC analysis, which drastically reduces the runtime.
 
-[Full Text (PDF, 3.05 MB, english)](Quickscan_2015_09_07_Print.pdf)
+[Full Text (PDF, 3.05 MB, english)](https://github.com/jojonas/bachelor-thesis/raw/master/Quickscan_2015_09_07_Print.pdf)
 
-[Final Presentation Slides (PDF, 1.87 MB, english)](presentations/quickscan_final/Quickscan.pdf)
+[Final Presentation Slides (PDF, 1.87 MB, english)](https://github.com/jojonas/bachelor-thesis/raw/master/presentations/quickscan_final/Quickscan.pdf)
